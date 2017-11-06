@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>La piccola libreria di Lisa Orlandi</title>
+    <meta name="description" content="libreria di gianni e pinotto">
+    <meta name="author" content="gianni">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/newsletter.css"/>
+
+    <!-- JS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="js/localforage.js"></script>
+    <script src="js/newsletter.js"></script>
+  </head>
+  <body>
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content">
+        <a onclick="closeNav()" href="/index.html">Home</a>
+        <a onclick="closeNav()" href="/index.html#time-table">Orari</a>
+        <a onclick="closeNav()" href="#">Newsletter</a>
+        <a onclick="closeNav()" href="/index.html">Eventi</a>
+      </div>
+    </div>
+    <div class="header" id="home">
+      <div class="header-top-bar">
+        <a href="/index.html"><img class="header-left-logo" src="img/logo_white.png"/></a>
+        <a onclick="openNav()">
+          <span class="menu-right">&#9776;</span>
+          <!--<img class="svg-image menu-right" src="img/thumb/thumb_64.png" /> -->
+        </a>
+      </div>
+    </div>
+    <div class="main">
+      <div class="container">
+        <div class="title section">
+          <h1>La newsletter di Lisa</h1>
+          <p>
+            Cillum esse cillum adipisicing tempor nulla ullamco eiusmod id esse qui enim nostrud ad consequat dolore reprehenderit pariatur. Irure laboris id incididunt adipisicing dolore et veniam velit. Dolor incididunt et aute eiusmod tempor in non Lorem minim proident ex sunt.
+          </p>
+        </div>
+        <div class="form section">
+          <form id="newsletterForm">
+            <div class="row">
+              <div class="ever-half column">
+                <label>
+                  <input onclick="checkedEmail()" id="emailCheckbox" checked type="checkbox">
+                  <span class="label-body">Email</span>
+                </label>
+              </div>
+              <div class="ever-half column">
+                <label>
+                  <input onclick="checkedSMS()" id="SMSCheckbox" type="checkbox">
+                  <span class="label-body">SMS</span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="one-half column" id="emailInputDiv">
+                <label for="emailInput">La tua email</label>
+                  <input class="u-full-width" placeholder="marta@mailbox.com" id="emailInput" type="email">
+              </div>
+              <div class="one-half column" id="phoneInputDiv">
+                <label for="phoneInput">Il tuo numero di telefono</label>
+                  <input class="u-full-width" placeholder="342 123456" id="phoneInput" type="tel">
+              </div>
+            </div>
+            <div class="row">
+              <div class="one-half column">
+                <label for="nameInput">Nome</label>
+                  <input class="u-full-width" placeholder="marta" id="nameInput" type="text">
+              </div>
+              <div class="one-half column">
+                <label for="surnameInput">Cognome</label>
+                  <input class="u-full-width" placeholder="betania" id="surnameInput" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <label for="notes">I tuoi interessi</label>
+              <textarea class="u-full-width" placeholder="Ti piacciono i classici? I romanzi storici? Le graphic novel? Ti interessi di guerra, sociologia, inforamtica? Raccontaci cosa ti piace leggere e noi cercheremo di consigliarti al meglio." id="notes"></textarea>
+            </div>
+            <div class="row">
+              <div class="ever-half column">
+                <b id="robotCheckQuestion">2 + 2 =</b>
+                <input id="robotCheck" type="number">
+              </div>
+              <div class="ever-half column">
+                <input id="sendButton" class="u-full-width button-primary" value="Invia" type="submit">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    <div class="footer section">
+      <p>
+        <b>La piccola Libreria</b> snc di Lisa Orlandi | <b>Via Regia 26</b> | 38056 <b>Levico Terme</b> (TN) <br />
+Tel. 0461.701914 | info@lapiccolalibreria.it | CF e P.IVA 02351900226
+      </p>
+    </div>
+  </body>
+</html>

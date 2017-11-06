@@ -1,0 +1,22 @@
+{
+  "short-name": "Piccola Libreria",
+  "name": "La piccola libreria",
+  "description": "qui va la descrizione",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "/im/thumb/thumb_64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+        "src": "/im/thumb/thumb_512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+  ],
+  "theme_color": "#eee",
+  "background_color": "#eee"
+}

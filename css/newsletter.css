@@ -1,0 +1,186 @@
+body{
+  background-color: #eee;
+  margin: 0;
+}
+/* --- Overlay menu --- */
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+.
+/* --- General --- */
+.section{
+  margin: 20px 0;
+}
+/*  --- Header --- */
+.header{
+  min-height: 240px;
+  background-color: #ccc;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../img/main_intro.jpg');
+  background-size: cover;
+}
+.header-top-bar{
+  padding: 20px 20px;
+}
+.header-left-logo{
+  max-width: 128px;
+}
+.menu-right{
+  float: right;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  cursor: hand;
+}
+/*  --- Intro --- */
+.clear {
+  clear: both;
+}
+.clear::after{
+  clear: both;
+  display: block;
+}
+.title h1{
+  margin-top: 20px;
+}
+.quote p{
+  font-style: italic;
+  padding-left: 10px;
+  margin-bottom: 0;
+}
+.quote h5{
+  float: right;
+  color: grey;
+}
+/* --- Form --- */
+.form{
+  text-align: center;
+}
+#emailInputDiv{
+  display: block;
+}
+#phoneInputDiv{
+  display: none;
+}
+#robotCheck{
+  width: 50%;
+}
+
+/* --- Social --- */
+.social div div{
+  text-align: center;
+}
+
+/* --- Motivation --- */
+.motivation{
+  color: #fff;
+  min-height: 100px;
+  background-color: #ccc;
+  background-image:  url('../img/thumb/thumb_1366_768.png');
+  background-size: cover;
+}
+.motivation p{
+  padding-top: 20px;
+  font-style: italic;
+  padding-left: 10px;
+  margin-bottom: 0;
+}
+.motivation h5{
+  float: right;
+}
+/* --- Footer --- */
+.footer{
+  min-height: 50px;
+  background-color: #ccc;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 100px 20px;
+}
+/* --- Media-queries --- */
+/* Larger than mobile */
+@media (min-width: 400px) {
+  .header{
+    min-height: 300px;
+  }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+  .header{
+    min-height: 330px;
+  }
+  .motivation h4{
+    padding: 30px 20px;
+  }
+  .motivation h5{
+    padding-right: 20px;
+  }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .header{
+    min-height: 360px;
+  }
+  .container{
+    width: 70%;
+  }
+  .motivation h4{
+    padding: 40px 30px;
+  }
+  .motivation h5{
+    padding-right: 20px;
+  }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+  .header{
+    min-height: 400px;
+  }
+  .container{
+    width: 60%;
+  }
+  .motivation h4{
+    padding: 60px 40px;
+  }
+  .motivation h5{
+    padding-right: 40px;
+  }
+}
