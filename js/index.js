@@ -16,7 +16,7 @@ function downloadEvents() {
   };
   eventRequest.open(
     "GET",
-    "http://jsonbin.io/b/59cb768e36b21b0854312750",
+    "https://jsonbin.io/b/59cb768e36b21b0854312750",
     true
   );
   eventRequest.send();

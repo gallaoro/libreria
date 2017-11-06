@@ -59,7 +59,7 @@ self.addEventListener("fetch", function(event) {
 
 self.addEventListener("sync", function(event) {
   if (event.tag === "sync-newsletter-submission") {
-    fetch("http://jsonbin.io/b/59cb768e36b21b0854312750")
+    fetch("https://jsonbin.io/b/59cb768e36b21b0854312750")
       .then(function(response) {
         console.log(response);
         self.clients.matchAll().then(function(clients) {

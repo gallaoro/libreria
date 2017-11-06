@@ -67,7 +67,7 @@ function sottoscriviNewsletter(submission){
       };
       eventRequest.open(
         "GET",
-        "http://jsonbin.io/b/59cb768e36b21b0854312750", //TODO:
+        "https://jsonbin.io/b/59cb768e36b21b0854312750", //TODO:
         true
       );
       eventRequest.send();
@@ -84,7 +84,7 @@ function sottoscriviNewsletter(submission){
     };
     eventRequest.open(
       "GET",
-      "http://jsonbin.io/b/59cb768e36b21b0854312750", //TODO:
+      "https://jsonbin.io/b/59cb768e36b21b0854312750", //TODO:
       true
     );
     eventRequest.send();
