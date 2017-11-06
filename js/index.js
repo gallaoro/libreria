@@ -37,19 +37,19 @@ function buildEventCardFromObject(object) {
   var e_image = object.event_image;
   var e_link = object.event_link;
 
-  let eventDiv = document.createElement("div");
+  var eventDiv = document.createElement("div");
   eventDiv.className = "event-card";
   var gradient = "linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))";
   var backgroundString = gradient + ", url('" + e_image + "')";
   eventDiv.style.backgroundImage = backgroundString;
-  let eventP = document.createElement("h4");
+  var eventP = document.createElement("h4");
   eventP.innerHTML = e_title.slice(0, 56);
   eventDiv.appendChild(eventP);
-  let eventA = document.createElement("a");
+  var eventA = document.createElement("a");
   eventA.setAttribute("href", e_link);
   eventA.appendChild(document.createElement("span"));
   eventDiv.appendChild(eventA);
-  let eventH4 = document.createElement("h5");
+  var eventH4 = document.createElement("h5");
   eventH4.innerHTML =
     getWeekDayFromDate(e_date) +
     " " +
@@ -135,17 +135,17 @@ function hideLoading() {
 
 window.onload = function() {
   downloadEvents();
-  setTimeout(setInterval(function(){changeHeaderBackground()}, 5000),5000);
+  setTimeout(setInterval(function(){changeHeaderBackground();}, 5000),5000);
 };
 
 /*
    ------------------ Backgroud carousel -----------------------------
 */
 var bgImages = [
-  "../img/main_intro.jpg",
-  "../img/main_intro2.jpg",
-  "../img/main_intro3.jpg",
-  "../img/main_intro4.jpg"
+  "/img/main_intro.jpg",
+  "/img/main_intro2.jpg",
+  "/img/main_intro3.jpg",
+  "/img/main_intro4.jpg"
 ];
 
 function shuffleArray(array) {
