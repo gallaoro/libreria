@@ -142,10 +142,10 @@ window.onload = function() {
    ------------------ Backgroud carousel -----------------------------
 */
 var bgImages = [
-  "/img/main_intro.jpg",
-  "/img/main_intro2.jpg",
-  "/img/main_intro3.jpg",
-  "/img/main_intro4.jpg"
+  "img/main_intro.jpg",
+  "img/main_intro2.jpg",
+  "img/main_intro3.jpg",
+  "img/main_intro4.jpg"
 ];
 
 function shuffleArray(array) {
