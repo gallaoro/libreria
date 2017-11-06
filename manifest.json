@@ -12,6 +12,11 @@
       "sizes": "64x64"
     },
     {
+      "src": "/im/thumb/thumb_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
         "src": "/im/thumb/thumb_512.png",
         "type": "image/png",
         "sizes": "512x512"
