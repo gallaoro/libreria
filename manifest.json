@@ -2,9 +2,10 @@
   "short-name": "Piccola Libreria",
   "name": "La piccola libreria",
   "description": "qui va la descrizione",
-  "start_url": "index.html",
+  "start_url": "/index.html",
   "scope": "/",
   "display": "fullscreen",
+  "lang": "it-IT",
   "icons": [
     {
       "src": "img/thumb/thumb_64.png",
