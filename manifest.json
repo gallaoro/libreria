@@ -5,7 +5,7 @@
   "start_url": "/?utm_source=homescreen",
   "scope": "/",
   "display": "fullscreen",
-  "lang": "it-IT",
+  "lang": "it",
   "icons": [
     {
       "src": "img/thumb/thumb_64.png",
@@ -28,6 +28,6 @@
       "sizes": "512x512"
     }
   ],
-  "theme_color": "#eee",
-  "background_color": "#eee"
+  "theme_color": "#333333",
+  "background_color": "#333333"
 }
