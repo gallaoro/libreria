@@ -29,6 +29,8 @@ self.addEventListener("install", function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       cache.addAll(CACHE_URLS);
+    }).catch(function(){
+      console.log("unable to open chache");
     })
   );
 });
@@ -46,12 +48,16 @@ self.addEventListener("fetch", function(event) {
           .catch(function() {
             return cache.match(event.request);
           });
+      }).catch(function(){
+        console.log("unable to open chache");
       })
     );
   } else {
     event.respondWith(
       caches.match(event.request).then(function(response) {
         return response || fetch(event.request);
+      }).catch(function(){
+        console.log("unable to open chache");
       })
     );
   }
