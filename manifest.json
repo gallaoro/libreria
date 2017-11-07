@@ -3,7 +3,7 @@
   "name": "La piccola libreria",
   "description": "qui va la descrizione",
   "start_url": "/?utm_source=homescreen",
-  "scope": "/",
+  "scope": "/libreria/",
   "display": "fullscreen",
   "lang": "it-IT",
   "icons": [
