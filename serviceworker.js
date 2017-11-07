@@ -1,25 +1,25 @@
-var CACHE_NAME = "cache-v1";
+var CACHE_NAME = "cache-v2";
 var CACHE_URLS = [
   //HTML
-  "/index.html",
-  "/newsletter.html",
+  "index.html",
+  "newsletter.html",
   //CSS
-  "/css/index.css",
-  "/css/event.css",
-  "/css/skeleton.css",
-  "/css/newsletter.css",
+  "css/index.css",
+  "css/event.css",
+  "css/skeleton.css",
+  "css/newsletter.css",
   //JS
-  "/js/index.js",
-  "/js/event.js",
-  "/js/newsletter.js",
-  "/js/localforage.js",
+  "js/index.js",
+  "js/event.js",
+  "js/newsletter.js",
+  "js/localforage.js",
   //IMAGES
-  "/img/main_intro.jpg",
-  "/img/social_fb.png",
-  "/img/social_in.png",
-  "/img/social_tw.png",
-  "/img/logo_white.png",
-  "/img/cover_1.jpg",
+  "img/main_intro.jpg",
+  "img/social_fb.png",
+  "img/social_in.png",
+  "img/social_tw.png",
+  "img/logo_white.png",
+  "img/cover_1.jpg",
   //OTHER
   "//fonts.googleapis.com/css?family=Raleway:400,300,600"
 ];
@@ -28,9 +28,11 @@ self.addEventListener("install", function(event) {
   console.log("SW: install");
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
-      cache.addAll(CACHE_URLS);
+      cache.addAll(CACHE_URLS).catch(function(){
+        console.log("cannot add to chache");
+      });
     }).catch(function(){
-      console.log("unable to open chache");
+      console.log("unable to open cache");
     })
   );
 });
@@ -49,7 +51,7 @@ self.addEventListener("fetch", function(event) {
             return cache.match(event.request);
           });
       }).catch(function(){
-        console.log("unable to open chache");
+        console.log("unable to open cache");
       })
     );
   } else {
@@ -57,7 +59,7 @@ self.addEventListener("fetch", function(event) {
       caches.match(event.request).then(function(response) {
         return response || fetch(event.request);
       }).catch(function(){
-        console.log("unable to open chache");
+        console.log("unable to open cache");
       })
     );
   }
