@@ -1,33 +1,32 @@
 {
-  "short_name": "Libreria",
-  "name": "La piccola libreria",
-  "description": "qui va la descrizione",
-  "start_url": "/?utm_source=homescreen",
-  "scope": "/",
-  "display": "fullscreen",
-  "lang": "it",
-  "icons": [
+  "short_name" : "Libreria",
+  "name" : "piccola Libreria",
+  "description" : "description here",
+  "start_url" : "/index.html?umt_source=pwa",
+  "scope" : "/",
+  "display" : "fullscreen",
+  "icons" : [
     {
-      "src": "img/thumb/thumb_64.png",
-      "type": "image/png",
-      "sizes": "64x64"
+      "src" : "img/thumb_64.png",
+      "type" : "image/png",
+      "sizes" : "64x64"
     },
     {
-      "src": "img/thumb/thumb_144.png",
-      "type": "image/png",
-      "sizes": "144x144"
+      "src" : "img/thumb_144.png",
+      "type" : "image/png",
+      "sizes" : "144x144"
     },
     {
-      "src": "img/thumb/thumb_192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src" : "img/thumb_192.png",
+      "type" : "image/png",
+      "sizes" : "192x192"
     },
     {
-      "src": "img/thumb/thumb_512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src" : "img/thumb_512.png",
+      "type" : "image/png",
+      "sizes" : "512x512"
     }
   ],
-  "theme_color": "#333333",
-  "background_color": "#333333"
+  "theme_color" : "#333333",
+  "background_color" : "#333333"
 }
