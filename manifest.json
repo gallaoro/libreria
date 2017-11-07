@@ -2,7 +2,7 @@
   "short_name": "Libreria",
   "name": "Piccola Libreria",
   "description": "Avventure, storie, biografie, poesie, caffè e tanti libri",
-  "start_url": "/?utm_source=pwa",
+  "start_url": "index.html",
   "scope": "/",
   "display": "fullscreen",
   "icons": [
