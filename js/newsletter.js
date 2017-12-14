@@ -3,7 +3,7 @@
 */
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("serviceworker.js",{scope: "/libreria"})
+    .register("serviceworker.js",{scope: "/libreria/"})
     .then(function(registration) {
       navigator.serviceWorker.addEventListener("message", function(event) {
         console.log(event.data);
