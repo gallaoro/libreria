@@ -3,7 +3,7 @@
   "name": "Piccola Libreria",
   "description": "Avventure, storie, biografie, poesie, caffè e tanti libri",
   "start_url": "https://lellefood.github.io/libreria/index.html",
-  "scope": "/libreria",
+  "scope": "/libreria/",
   "display": "fullscreen",
   "icons": [
     {
