@@ -76,16 +76,19 @@ self.addEventListener("fetch", function(event) {
 
 //TODO: complete with real req
 self.addEventListener("sync", function(event) {
-  if (event.tag === "sync-newsletter") {
+  if (event.tag == "sync-newsletter") {
     event.waitUntil(function() {
-      fetch("https://jsonbin.io/b/59cb768e36b21b0854312750").then(function(
-        response
-      ) {
-        clients.forEach(function(client) {
-          client.postMessage("lpl-newsletter-registered");
+      console.log("sync recived");
+      fetch("https://jsonbin.io/b/59cb768e36b21b0854312750")
+        .then(function(response) {
+          clients.forEach(function(client) {
+            client.postMessage("lpl-newsletter-registered");
+          });
+          return Promise.resolve();
+        })
+        .catch(function(err) {
+          return Promise.reject();
         });
-        return Promise.resolve();
-      });
     });
   }
 });
