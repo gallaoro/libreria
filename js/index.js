@@ -1,35 +1,60 @@
-function openNav() {
+/*
+  ------------------ Service Worker registration ------------------------------
+*/
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("serviceworker.js")
+    .then(function(registration) {
+      console.log("Service Worker registered. Scope: ", registration.scope);
+    })
+    .catch(function(err) {
+      console.log("Service Worker registration failed. Err: ", err);
+      console.log(
+        "Maybe you should try to use a better browser... *cough* Firefox *cough*"
+      );
+    });
+}
+
+/*
+  ------------------ Page specific code ---------------------------------------
+*/
+
+// Basic menu
+let openNav = function() {
   document.getElementById("myNav").style.width = "100%";
-}
+};
 
-function closeNav() {
+let closeNav = function() {
   document.getElementById("myNav").style.width = "0%";
-}
+};
 
+// Load events after page loads
 function downloadEvents() {
-  var eventRequest = new XMLHttpRequest();
-  eventRequest.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var rawJson = eventRequest.responseText;
-      extractEventsFromJson(rawJson, hideLoading);
-    }
-  };
-  eventRequest.open(
-    "GET",
-    "https://jsonbin.io/b/59cb768e36b21b0854312750",
-    true
-  );
-  eventRequest.send();
+  fetch("https://jsonbin.io/b/59cb768e36b21b0854312750")
+    .then(function(response) {
+      var contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        return response.json();
+      }
+      throw new TypeError("no json");
+    })
+    .then(function(json) {
+      extractEventsFromObj(json).then(hideLoading());
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 
-function extractEventsFromJson(json, callback) {
-  var obj = JSON.parse(json);
-  var event_list = obj.events;
-  for (var event in event_list) {
-    buildEventCardFromObject(event_list[event]);
-  }
-  callback();
-}
+let extractEventsFromObj = function(obj) {
+  return new Promise((resolve, reject) => {
+    var event_list = obj.events;
+    for (var event in event_list) {
+      buildEventCardFromObject(event_list[event]);
+    }
+    resolve();
+  });
+};
 
 function buildEventCardFromObject(object) {
   var e_title = object.event_title || "Titolo";
@@ -60,6 +85,50 @@ function buildEventCardFromObject(object) {
   document.getElementById("events").appendChild(eventDiv);
 }
 
+let hideLoading = function() {
+  document.getElementById("loading").style.display = "none";
+};
+
+window.onload = function() {
+  downloadEvents();
+  setTimeout(
+    setInterval(function() {
+      changeHeaderBackground();
+    }, 5000),
+    5000
+  );
+};
+
+/*
+   ------------------ Backgroud carousel --------------------------------------
+*/
+var bgImages = [
+  "img/main_intro.jpg",
+  "img/main_intro2.jpg",
+  "img/main_intro3.jpg",
+  "img/main_intro4.jpg"
+];
+
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}
+
+function changeHeaderBackground() {
+  shuffleArray(bgImages);
+  var next = bgImages[0];
+  var nextProp =
+    "linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(" +
+    next +
+    ") top left / cover no-repeat";
+  document.getElementById("home").style.background = nextProp;
+}
+
+// Is ugly I know, dont want to load external libraries just for this
 function getWeekDayFromDate(date) {
   var d = date.getDay();
   switch (d) {
@@ -127,59 +196,4 @@ function getMonthFormDate(date) {
       return "dicembre";
       break;
   }
-}
-
-function hideLoading() {
-  document.getElementById("loading").style.display = "none";
-}
-
-window.onload = function() {
-  downloadEvents();
-  setTimeout(setInterval(function(){changeHeaderBackground();}, 5000),5000);
-};
-
-/*
-   ------------------ Backgroud carousel -----------------------------
-*/
-var bgImages = [
-  "img/main_intro.jpg",
-  "img/main_intro2.jpg",
-  "img/main_intro3.jpg",
-  "img/main_intro4.jpg"
-];
-
-function shuffleArray(array) {
-  for (var i = array.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-}
-
-function changeHeaderBackground() {
-  shuffleArray(bgImages);
-  var next = bgImages[0];
-  var nextProp =
-    "linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(" +
-    next +
-    ") top left / cover no-repeat";
-  document.getElementById("home").style.background = nextProp;
-}
-
-/*
-   ------------------ Service Worker registration -----------------------------
-*/
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("serviceworker.js")
-    .then(function(registration) {
-      console.log("Service Worker registered. Scope: ", registration.scope);
-    })
-    .catch(function(err) {
-      console.log("Service Worker registration failed. Err: ", err);
-      console.log(
-        "Maybe you should try to use a better browser... *cough* Firefox *cough*"
-      );
-    });
 }

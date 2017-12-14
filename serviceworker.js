@@ -21,19 +21,21 @@ var CACHE_URLS = [
   "img/logo_white.png",
   "img/cover_1.jpg",
   //OTHER
-  "//fonts.googleapis.com/css?family=Raleway:400,300,600"
+  "fonts.googleapis.com/css?family=Raleway:400,300,600"
 ];
 
 self.addEventListener("install", function(event) {
   console.log("SW: install");
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      cache.addAll(CACHE_URLS).catch(function(){
-        console.log("cannot add to chache");
-      });
-    }).catch(function(){
-      console.log("unable to open cache");
-    })
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        cache.addAll(CACHE_URLS).catch(function() {
+          console.log("cannot add responses to chache");
+        });
+      })
+      .catch(function() {
+        console.log("unable to open cache");
+      })
   );
 });
 
@@ -41,26 +43,30 @@ self.addEventListener("fetch", function(event) {
   var reqestURL = new URL(event.request.url);
   if ("jsonbin.io" in reqestURL) {
     event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return fetch(event.request)
-          .then(function(networResponse) {
-            cache.put(event.request, networResponse.clone());
-            return networResponse;
-          })
-          .catch(function() {
-            return cache.match(event.request);
-          });
-      }).catch(function(){
-        console.log("unable to open cache");
-      })
+      caches.open(CACHE_NAME)
+        .then(function(cache) {
+          return fetch(event.request)
+            .then(function(networResponse) {
+              cache.put(event.request, networResponse.clone());
+              return networResponse;
+            })
+            .catch(function() {
+              return cache.match(event.request);
+            });
+        })
+        .catch(function() {
+          console.log("unable to open cache");
+        })
     );
   } else {
     event.respondWith(
-      caches.match(event.request).then(function(response) {
-        return response || fetch(event.request);
-      }).catch(function(){
-        console.log("unable to open cache");
-      })
+      caches.match(event.request)
+        .then(function(response) {
+          return response || fetch(event.request);
+        })
+        .catch(function() {
+          console.log("unable to open cache");
+        })
     );
   }
 });
