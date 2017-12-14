@@ -3,7 +3,7 @@
 */
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("serviceworker.js")
+    .register("serviceworker.js",{scope: "/libreria"})
     .then(function(registration) {
       console.log("Service Worker registered. Scope: ", registration.scope);
     })

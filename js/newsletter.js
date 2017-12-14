@@ -3,7 +3,7 @@
 */
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("serviceworker.js")
+    .register("serviceworker.js",{scope: "/libreria"})
     .then(function(registration) {
       navigator.serviceWorker.addEventListener("message", function(event) {
         console.log(event.data);
@@ -74,22 +74,20 @@ let checkVerifica = function(risposta) {
   return true;
 };
 
-function sottoscriviNewsletter(submission) {
+let sottoscriviNewsletter = function(submission) {
   localforage.setItem("submission", submission);
   document.getElementById("sendButton").value = submission.stato;
   document.getElementById("sendButton").style.backgroundColor = "orange";
   document.getElementById("sendButton").style.borderColor = "orange";
   document.getElementById("sendButton").diabled = true;
   if ("serviceWorker" in navigator && "SyncManager" in window) {
-    navigator.serviceWorker.ready
-      .then(function(registration) {
-        registration.sync.register("sync-newsletter-submission");
-      })
-      .catch(console.log("sw is not ready"));
+    navigator.serviceWorker.ready.then(function(registration) {
+      registration.sync.register("sync-newsletter");
+    });
   } else {
     console.log("no newsletter for who dont have a sw");
   }
-}
+};
 
 window.onload = function() {
   document

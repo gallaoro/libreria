@@ -21,16 +21,17 @@ var CACHE_URLS = [
   "img/logo_white.png",
   "img/cover_1.jpg",
   //OTHER
-  "fonts.googleapis.com/css?family=Raleway:400,300,600"
+  "//fonts.googleapis.com/css?family=Raleway:400,300,600"
 ];
 
 self.addEventListener("install", function(event) {
   console.log("SW: install");
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches
+      .open(CACHE_NAME)
       .then(function(cache) {
-        cache.addAll(CACHE_URLS).catch(function() {
-          console.log("cannot add responses to chache");
+        cache.addAll(CACHE_URLS).catch(function(err) {
+          console.log(err);
         });
       })
       .catch(function() {
@@ -43,7 +44,8 @@ self.addEventListener("fetch", function(event) {
   var reqestURL = new URL(event.request.url);
   if ("jsonbin.io" in reqestURL) {
     event.respondWith(
-      caches.open(CACHE_NAME)
+      caches
+        .open(CACHE_NAME)
         .then(function(cache) {
           return fetch(event.request)
             .then(function(networResponse) {
@@ -60,7 +62,8 @@ self.addEventListener("fetch", function(event) {
     );
   } else {
     event.respondWith(
-      caches.match(event.request)
+      caches
+        .match(event.request)
         .then(function(response) {
           return response || fetch(event.request);
         })
@@ -71,20 +74,18 @@ self.addEventListener("fetch", function(event) {
   }
 });
 
+//TODO: complete with real req
 self.addEventListener("sync", function(event) {
-  if (event.tag === "sync-newsletter-submission") {
-    fetch("https://jsonbin.io/b/59cb768e36b21b0854312750")
-      .then(function(response) {
-        console.log(response);
-        self.clients.matchAll().then(function(clients) {
-          clients.forEach(function(element) {
-            element.postMessage("lpl-newsletter-registered");
-          });
-          return Promise.resolve();
+  if (event.tag === "sync-newsletter") {
+    event.waitUntil(function() {
+      fetch("https://jsonbin.io/b/59cb768e36b21b0854312750").then(function(
+        response
+      ) {
+        clients.forEach(function(client) {
+          client.postMessage("lpl-newsletter-registered");
         });
-      })
-      .catch(function() {
-        return Promise.reject();
+        return Promise.resolve();
       });
+    });
   }
 });
