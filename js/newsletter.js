@@ -82,10 +82,12 @@ let sottoscriviNewsletter = function(submission) {
   document.getElementById("sendButton").diabled = true;
   if ("serviceWorker" in navigator && "SyncManager" in window) {
     navigator.serviceWorker.ready.then(function(registration) {
-      registration.sync.register("sync-newsletter");
+      console.log("sw and sync available, sw ready");
+      registration.sync.register("sync-newsletter").then(console.log("sync registered"));
+      console.log("ended sync");
     });
   } else {
-    console.log("no newsletter for who dont have a sw");
+    console.log("no newsletter for who dont have a sw and sync");
   }
 };
 
