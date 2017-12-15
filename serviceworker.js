@@ -79,7 +79,7 @@ self.addEventListener("sync", function(event) {
   console.log("a sync catched");
   if (event.tag === "sync-newsletter") {
     console.log("is my sync");
-    event.waitUntil(fetch("http://google.com")
+    event.waitUntil(fetch("https://google.com")
       .then(function(response) {
         self.clients.matchAll().then(function(clients){
           clients.forEach(client => {
