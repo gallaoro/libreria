@@ -79,11 +79,13 @@ self.addEventListener("sync", function(event) {
   console.log("a sync catched");
   if (event.tag === "sync-newsletter") {
     console.log("is my sync");
-    event.waitUntil(() => {
-      return fetch("http://jsonbin.io/b/59cb768e36b21b0854312750")
-        .then(function(response) {
-          console.log("ok sent");
-        });
-    });
+    event.waitUntil(fetch("http://google.com")
+      .then(function(response) {
+        self.clients.matchAll().then(function(clients){
+          clients.forEach(client => {
+            client.postMessage("form sent");
+          });
+        })
+      }));
   }
 });
