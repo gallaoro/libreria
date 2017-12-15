@@ -76,16 +76,17 @@ self.addEventListener("fetch", function(event) {
 
 //TODO: complete with real req
 self.addEventListener("sync", function(event) {
-  console.log("a sync catched");
   if (event.tag === "sync-newsletter") {
-    console.log("is my sync");
-    event.waitUntil(fetch("https://jsonbin.io/b/59cb768e36b21b0854312750")
-      .then(function(response) {
-        self.clients.matchAll().then(function(clients){
-          clients.forEach(client => {
-            client.postMessage("form sent");
-          });
+    event.waitUntil(
+      fetch("http://jsonbin.io/b/59cb768e36b21b0854312750")
+        .then((res)=>{
+          self.clients.matchAll().then((clients)=>{
+            clients.forEach(client => {
+              client.postMessage("form-sent");
+            });
+          })
         })
-      }));
+        .catch((err)=>{console.log("sync error: ",err)})
+    );
   }
 });
