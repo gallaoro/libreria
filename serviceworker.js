@@ -82,16 +82,7 @@ self.addEventListener("sync", function(event) {
     event.waitUntil(() => {
       return fetch("http://jsonbin.io/b/59cb768e36b21b0854312750")
         .then(function(response) {
-          self.clients.matchAll().then(function(clients) {
-            clients.forEach(function(element) {
-              element.postMessage("lpl-newsletter-registered");
-            });
-            console.log("sent form, message to all that i've done")
-            return Promise.resolve();
-          });
-        })
-        .catch(function() {
-          return Promise.reject();
+          console.log("ok sent");
         });
     });
   }
